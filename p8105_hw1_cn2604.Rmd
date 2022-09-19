@@ -4,26 +4,36 @@ output: github_document
 date: "2022-09-17"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# Problem 1
+
+```{r loading_library, echo=FALSE, message=FALSE}
+library(knitr)
+library(tidyverse)
+data("penguins", package = "palmerpenguins")
+penguins_table = kable(penguins)
 ```
+The __penguins__ dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+The flipper length is `r round(mean(penguins$flipper_length_mm, na.rm=TRUE), digits = 2)`mm.
+<!-- The appearance of __penguins__ dataset is `r penguins_table` -->
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r scatterplot}
+attach(penguins)
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, 
+                     y = flipper_length_mm,
+                 color = species)) +
+  geom_point(na.rm = TRUE)
+ggsave("scatterplot.pdf")
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Problem 2
+```{r dataframe}
+dataframe = tibble(
+  var_norm = rnorm(n=10),
+  var_logical = var_norm > 0,
+  var_char = letters[1:10],
+  var_factor = factor(sample(x = c("one","two","three"), 
+                             size = 10,
+                             replace = TRUE)
+  )
+)
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
