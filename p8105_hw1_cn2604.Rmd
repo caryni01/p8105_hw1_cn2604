@@ -12,8 +12,8 @@ library(tidyverse)
 data("penguins", package = "palmerpenguins")
 ```
 The __penguins__ dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
-The varibles are `r names(penguins)`.
-The mean flipper length is __`r round(mean(penguins$flipper_length_mm, na.rm=TRUE), digits = 2)`__mm.
+The varibles are `r names(penguins)`. Here is detailed information for factor variables`r kable(summary(penguins[c("species", "island", "sex")]))`For numeric variables, the mean __bill length__ is `r round(mean(penguins$bill_length_mm, na.rm=TRUE), digits = 2)`mm, the __mean bill__ depth is `r round(mean(penguins$bill_depth_mm, na.rm=TRUE), digits = 2)`mm, and __mean body mass__ is `r round(mean(penguins$body_mass_g, na.rm=TRUE), digits = 2)` grams.
+The __mean flipper length__ is `r round(mean(penguins$flipper_length_mm, na.rm=TRUE), digits = 2)`mm. 
 
 ```{r scatterplot}
 attach(penguins)
