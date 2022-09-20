@@ -10,11 +10,10 @@ date: "2022-09-17"
 library(knitr)
 library(tidyverse)
 data("penguins", package = "palmerpenguins")
-penguins_table = kable(penguins)
 ```
 The __penguins__ dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
-The flipper length is `r round(mean(penguins$flipper_length_mm, na.rm=TRUE), digits = 2)`mm.
-<!-- The appearance of __penguins__ dataset is `r penguins_table` -->
+The varibles are `r names(penguins)`.
+The mean flipper length is __`r round(mean(penguins$flipper_length_mm, na.rm=TRUE), digits = 2)`__mm.
 
 ```{r scatterplot}
 attach(penguins)
