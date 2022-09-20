@@ -37,3 +37,11 @@ dataframe = tibble(
   )
 )
 ```
+```{r dataframe_calculation, eval=FALSE}
+  mean_norm = mean(pull(dataframe, var_norm))
+  mean_logical = mean(as.numeric(pull(dataframe, var_logical)))
+  mean_char = mean(as.numeric(pull(dataframe, var_char)))
+  mean_factor = mean(as.numeric(pull(dataframe, var_factor)))
+```
+The results show that as.numeric function does not work for _var_char_, but work for _var_logical_ and _var_factor_. 
+
